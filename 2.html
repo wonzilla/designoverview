@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLearn - Educational Resources</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #faf6e8; /* Main background */
+      color: #333; /* Softer text color for better readability */
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: #8f8a79; /* Secondary color for header */
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #faf6e8;
+      letter-spacing: 1px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 25px;
+    }
+    
+    nav ul li a {
+      text-decoration: none;
+      color: #faf6e8;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(rgba(250, 246, 232, 0.9), rgba(250, 246, 232, 0.9)), 
+                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23faf6e8"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23d4ccb4" stroke-width="0.5"/></svg>');
+      background-size: 30px 30px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #4a4737;
+      font-weight: 700;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #666;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #a59c7a, #8f8a79);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(143, 138, 121, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(143, 138, 121, 0.4);
+      background: linear-gradient(135deg, #8f8a79, #7a7566);
+    }
+    
+    /* Courses Section */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 40px;
+      font-size: 2.2rem;
+      color: #4a4737;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #a59c7a, #8f8a79);
+      border-radius: 2px;
+    }
+    
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0 60px;
+    }
+    
+    .card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      width: 320px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid #f0ebe0;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid #8f8a79;
+    }
+    
+    .card-content {
+      padding: 25px;
+    }
+    
+    .card-content h3 {
+      margin: 0 0 15px 0;
+      font-size: 22px;
+      color: #4a4737;
+    }
+    
+    .card-content p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .card-content button {
+      background: linear-gradient(135deg, #a59c7a, #8f8a79);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(143, 138, 121, 0.25);
+    }
+    
+    .card-content button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(143, 138, 121, 0.35);
+      background: linear-gradient(135deg, #8f8a79, #7a7566);
+    }
+    
+    /* Features Section */
+    .features {
+      background-color: #f5f1e4;
+      padding: 80px 0;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature {
+      text-align: center;
+      padding: 35px 30px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s;
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+      font-size: 40px;
+      color: #8f8a79;
+      margin-bottom: 20px;
+    }
+    
+    .feature h3 {
+      margin: 15px 0;
+      color: #4a4737;
+      font-size: 22px;
+    }
+    
+    .feature p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      background-color: #faf6e8;
+    }
+    
+    .testimonial-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .testimonial {
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      width: 320px;
+      transition: transform 0.3s;
+    }
+    
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+    
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    
+    .testimonial .author {
+      font-weight: bold;
+      color: #8f8a79;
+      font-size: 16px;
+    }
+    
+    /* About Section */
+    .about {
+      padding: 80px 0;
+      background: linear-gradient(to bottom, #f5f1e4, #faf6e8);
+    }
+    
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .about-text h2 {
+      margin-bottom: 25px;
+      color: #4a4737;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .about-text h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #a59c7a, #8f8a79);
+      border-radius: 2px;
+    }
+    
+    .about-text p {
+      margin-bottom: 20px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s;
+    }
+    
+    .about-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #8f8a79;
+      color: #faf6e8;
+      padding: 70px 0 30px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 25px;
+      font-size: 1.4rem;
+      color: #faf6e8;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-section h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #d4ccb4;
+      border-radius: 2px;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-section ul li a {
+      color: #faf6e8;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: block;
+      padding: 5px 0;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #d4ccb4;
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 15px;
+      color: #d4ccb4;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 20px;
+        justify-content: center;
+      }
+      
+      nav ul li {
+        margin: 0 10px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">EduLearn</div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Quality Education for Everyone</h1>
+      <p>Discover our wide range of educational resources designed to help you succeed in your learning journey.</p>
+      <a href="#" class="btn">Explore Courses</a>
+    </div>
+  </section>
+
+  <!-- Featured Courses -->
+  <section class="courses">
+    <div class="container">
+      <h2 class="section-title">Featured Courses</h2>
+      <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+          <img src="./image.webp" alt="Mathematics Course">
+          <div class="card-content">
+            <h3>Mathematics Mastery</h3>
+            <p>Master math concepts step by step with easy guides and practical examples.</p>
+            <button>Learn More</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <img src="./image.webp" alt="Science Course">
+          <div class="card-content">
+            <h3>Science Explorer</h3>
+            <p>Explore the world of science with fun experiments and interactive lessons.</p>
+            <button>Learn More</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <img src="./image.webp" alt="Language Course">
+          <div class="card-content">
+            <h3>Language Fundamentals</h3>
+            <p>Learn Arabic, English, and more with our comprehensive language guides.</p>
+            <button>Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">👨‍🏫</div>
+          <h3>Expert Instructors</h3>
+          <p>Our courses are taught by experienced educators with years of teaching experience.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔄</div>
+          <h3>Interactive Learning</h3>
+          <p>Engage with interactive content that makes learning enjoyable and effective.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⏱️</div>
+          <h3>Flexible Schedule</h3>
+          <p>Learn at your own pace with our flexible course schedules and access options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Students Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial">
+          <p>"The mathematics course completely changed my understanding of complex concepts. Highly recommended!"</p>
+          <div class="author">- Ahmed S.</div>
+        </div>
+        <div class="testimonial">
+          <p>"I've tried many language courses, but this one stands out for its practical approach and clear explanations."</p>
+          <div class="author">- Fatima R.</div>
+        </div>
+        <div class="testimonial">
+          <p>"The science experiments were so engaging! My kids absolutely love learning with these resources."</p>
+          <div class="author">- Mohammed A.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About EduLearn</h2>
+          <p>EduLearn is a leading educational platform dedicated to providing high-quality learning resources for students of all ages. Our mission is to make education accessible and enjoyable for everyone.</p>
+          <p>With a team of experienced educators and content creators, we develop courses that are engaging, effective, and tailored to meet diverse learning needs.</p>
+          <a href="#" class="btn">Learn More About Us</a>
+        </div>
+        <div class="about-image">
+          <img src="./image.webp" alt="Students learning">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Popular Courses</h3>
+          <ul>
+            <li><a href="#">Mathematics</a></li>
+            <li><a href="#">Science</a></li>
+            <li><a href="#">Languages</a></li>
+            <li><a href="#">History</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: info@edulearn.com</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Address: 123 Education Street, Knowledge City</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 EduLearn. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
